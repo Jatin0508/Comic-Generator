@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+    background-color: #222;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Prevent body scroll */
+}
+
+/* Background Container */
+.background-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: 1; /* Ensure panels are above the background */
+    user-select: none; /* Prevent text/image selection */
+    pointer-events: none; /* Make background non-interactive */
+}
+
+/* Rows (Flexbox Layout) */
+.row {
+    display: flex;
+    width: 200%; /* Double width for duplicated panels */
+    height: 16.6666vh; /* 6 rows = 100vh (100/6 ≈ 16.6666) */
+    animation: slide 60s linear infinite;
+}
+
+/* Individual Comic Panels */
+.comic-panel {
+    flex: 0 0 10vw; /* Fixed width: 10% of viewport width */
+    height: 100%;
+    object-fit: cover; /* Ensure images fill the container */
+    border: 2px solid #333;
+}
+
+/* Animation for Infinite Scroll */
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move by half the row width */
+    }
+}
+
+/* Different animation speeds for each row */
+.row1 { animation-duration: 30s; opacity: 0.7; }
+.row2 { animation-duration: 40s; opacity: 0.6; }
+.row3 { animation-duration: 50s; opacity: 0.5; }
+.row4 { animation-duration: 60s; opacity: 0.4; }
+.row5 { animation-duration: 70s; opacity: 0.3; }
+.row6 { animation-duration: 80s; opacity: 0.2; }
+
+/* Heading Styling */
+.heading {
+    position: absolute;
+    font-family: 'Bangers', cursive;
+    top: 25%;
+    left: 10%;
+    color: white;
+    font-size: clamp(4rem, 12vw, 8rem);
+    text-shadow: 
+        3px 3px 0px black,
+        5px 5px 6px black,
+        7px 7px 9px black;
+    z-index: 2;
+    transform: rotate(-3deg);
+}
+
+/* Content (Description and Button) */
+.content {
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%);
+    width: 90%;
+    max-width: 500px;
+    z-index: 3; /* Above background and heading */
+    pointer-events: auto; /* Make content interactive */
+}
+
+/* Description */
+.description {
+    max-height: 200px; /* Adjust height as needed */
+    overflow-y: auto; /* Enable vertical scroll */
+    margin-bottom: 1.5rem;
+    color: white;
+    font-family: Arial, sans-serif;
+}
+
+.description h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.description p {
+    font-size: 1.2rem;
+    line-height: 1.5;
+    color: white;
+    font-weight: 520;
+}
+
+/* Get Started Button */
+.get-started {
+    width: 100%;
+    padding: 15px;
+    background: black;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.get-started:hover {
+    /*background: #222222;*/
+    transform: translateY(-3px);
+    box-shadow: 0px 5px 15px rgb(27, 26, 26);
+}
+
+/* Custom Scrollbar */
+.description::-webkit-scrollbar {
+    width: 8px;
+}
+
+.description::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+}
+
+.description::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+.description::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
